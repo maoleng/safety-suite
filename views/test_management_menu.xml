@@ -1,0 +1,9 @@
+<odoo>
+    <menuitem id="menu_test_management_root" name="Test Management" sequence="30"/>
+
+    <menuitem id="menu_test_management"
+              name="Tests"
+              parent="menu_test_management_root"
+              action="action_test_management"
+              sequence="10"/>
+</odoo>

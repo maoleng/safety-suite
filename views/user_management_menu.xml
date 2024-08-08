@@ -1,0 +1,9 @@
+<odoo>
+    <menuitem id="menu_user_management_root" name="User Management" sequence="10"/>
+
+    <menuitem id="menu_user_management"
+              name="Users"
+              parent="menu_user_management_root"
+              action="action_user_management"
+              sequence="10"/>
+</odoo>
