@@ -7,7 +7,6 @@
                 <field name="title"/>
                 <field name="description"/>
                 <field name="score"/>
-                <field name="is_public"/>
                 <field name="attempted_at"/>
                 <field name="finished_at"/>
                 <field name="available_at"/>
@@ -25,7 +24,6 @@
                     <group>
                         <field name="title"/>
                         <field name="description"/>
-                        <field name="is_public"/>
                     </group>
                     <group>
                         <field name="available_at"/>

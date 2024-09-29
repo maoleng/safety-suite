@@ -10,7 +10,6 @@ class Test(models.Model):
     description = fields.Text(string='Description')
     score = fields.Float(string='Score')
     user_id = fields.Many2one('res.users', string='User')
-    is_public = fields.Boolean(string='Is Public')
     feedback = fields.Text(string='Feedback')
     attempted_at = fields.Datetime(string='Attempted At')
     finished_at = fields.Datetime(string='Finished At')
