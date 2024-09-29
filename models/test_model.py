@@ -19,6 +19,12 @@ class Test(models.Model):
     question_ids = fields.One2many('thes.question_test', 'test_id', string='Questions')
 
     can_do_test = fields.Boolean(string="Can Do Test", compute="_compute_can_do_test")
+    show_questions = fields.Boolean(string='Show Questions', compute='_compute_show_questions')
+
+    def _compute_show_questions(self):
+        for record in self:
+            admin_group = self.env.ref('base.group_system')
+            record.show_questions = self.env.user in admin_group.users
 
     @api.depends('available_at', 'expired_at', 'attempted_at')
     def _compute_can_do_test(self):

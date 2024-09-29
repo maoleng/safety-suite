@@ -1,5 +1,14 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_thes_test_admin,access_thes_test_admin,model_thes_test,base.group_system,1,1,1,1
-access_thes_test_user_readonly,access_thes_test_user_readonly,model_thes_test,,1,0,0,0
+access_question_admin,access_question_admin,model_thes_question,base.group_system,1,1,1,1
+access_thes_test_user_readonly,access_thes_test_user_readonly,model_thes_test,,1,1,0,0
 access_thes_course_admin,access_thes_course_admin,model_thes_course,base.group_system,1,1,1,1
 access_thes_course_user_readonly,access_thes_course_user_readonly,model_thes_course,,1,0,0,0
+
+access_question_test_admin,access_question_test_admin,model_thes_question_test,base.group_system,1,1,1,1
+access_question_test_user_readonly,access_question_test_user_readonly,model_thes_question_test,,1,0,0,0
+
+access_test_wizard_everyone,access_test_wizard_everyone,model_thes_test_wizard,,1,1,1,1
+access_question_test_wizard_everyone,access_question_test_wizard_everyone,model_thes_question_test_wizard,,1,1,1,1
+access_question_everyone,access_question_everyone,model_thes_question,,1,0,0,0
+access_question_test_everyone,access_question_test_everyone,model_thes_question_test,,1,1,1,1
