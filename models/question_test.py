@@ -8,8 +8,10 @@ class QuestionTest(models.Model):
     test_id = fields.Many2one('thes.test', string='Test', required=True)
     order = fields.Integer(string='Order')
     user_answer = fields.Selection([
-        ('a', 'Answer A'),
-        ('b', 'Answer B'),
-        ('c', 'Answer C'),
-        ('d', 'Answer D')
+        ('A', 'Answer A'),
+        ('B', 'Answer B'),
+        ('C', 'Answer C'),
+        ('D', 'Answer D')
     ], string='User Answer')
+
+    content = fields.Text(related='question_id.content', string='Question Content')

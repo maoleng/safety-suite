@@ -10,8 +10,8 @@ class Question(models.Model):
     answer_c = fields.Char(string='Answer C', required=True)
     answer_d = fields.Char(string='Answer D', required=True)
     true_answer = fields.Selection([
-        ('a', 'Answer A'),
-        ('b', 'Answer B'),
-        ('c', 'Answer C'),
-        ('d', 'Answer D')
+        ('A', 'Answer A'),
+        ('B', 'Answer B'),
+        ('C', 'Answer C'),
+        ('D', 'Answer D')
     ], string='True Answer', required=True)

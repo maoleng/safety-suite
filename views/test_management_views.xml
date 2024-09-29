@@ -7,7 +7,6 @@
                 <field name="title"/>
                 <field name="description"/>
                 <field name="score"/>
-                <field name="time"/>
                 <field name="is_public"/>
                 <field name="attempted_at"/>
                 <field name="finished_at"/>
@@ -26,7 +25,6 @@
                     <group>
                         <field name="title"/>
                         <field name="description"/>
-                        <field name="time"/>
                         <field name="is_public"/>
                     </group>
                     <group>
@@ -35,6 +33,16 @@
                     </group>
                     <group>
                         <field name="user_id"/>
+                    </group>
+                    <group>
+                        <field name="question_ids">
+                            <tree editable="bottom">
+                                <field name="question_id"/>
+                                <field name="content"/>
+                                <field name="user_answer"/>
+                                <field name="order"/>
+                            </tree>
+                        </field>
                     </group>
                 </sheet>
             </form>
