@@ -63,7 +63,6 @@ class Test(models.Model):
             self.env['thes.question_test'].create({
                 'question_id': question.id,
                 'test_id': test.id,
-                'order': random.randint(1, 10),
             })
 
         return test

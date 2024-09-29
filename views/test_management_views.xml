@@ -39,7 +39,6 @@
                                 <field name="question_id"/>
                                 <field name="content"/>
                                 <field name="user_answer" readonly="1"/>
-                                <field name="order"/>
                             </tree>
                         </field>
                     </group>

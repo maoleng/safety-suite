@@ -6,7 +6,6 @@ class QuestionTest(models.Model):
 
     question_id = fields.Many2one('thes.question', string='Question', required=True)
     test_id = fields.Many2one('thes.test', string='Test', required=True)
-    order = fields.Integer(string='Order')
     user_answer = fields.Selection([
         ('A', 'Answer A'),
         ('B', 'Answer B'),
