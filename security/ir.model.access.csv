@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_thes_test_admin,access_thes_test_admin,model_thes_test,base.group_system,1,1,1,1
+access_thes_test_user_readonly,access_thes_test_user_readonly,model_thes_test,,1,0,0,0
+access_thes_course_admin,access_thes_course_admin,model_thes_course,base.group_system,1,1,1,1
+access_thes_course_user_readonly,access_thes_course_user_readonly,model_thes_course,,1,0,0,0
