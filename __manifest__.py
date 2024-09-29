@@ -31,6 +31,7 @@
         'views/course_management_menu.xml',
         'views/test_management_views.xml',
         'views/test_management_menu.xml',
+        'views/test_wizard_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

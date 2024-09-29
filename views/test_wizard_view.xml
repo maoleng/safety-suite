@@ -1,0 +1,33 @@
+<odoo>
+    <record id="view_test_wizard_form" model="ir.ui.view">
+        <field name="name">test.wizard.form</field>
+        <field name="model">thes.test_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Do Test">
+                <group>
+                    <field name="test_id" invisible="1"/>
+                    <field name="question_test_ids">
+
+                        <tree editable="bottom" create="false" delete="false">
+                            <field name="question_id" invisible="1"/>
+                            <!-- Display question content in a multi-line textarea with word wrap -->
+                            <field name="content" widget="text" style="white-space: normal;"/>
+                            <field name="answer_a" widget="text" style="white-space: normal;"/>
+                            <field name="answer_b" widget="text" style="white-space: normal;"/>
+                            <field name="answer_c" widget="text" style="white-space: normal;"/>
+                            <field name="answer_d" widget="text" style="white-space: normal;"/>
+
+                            <!-- Display user answer as a dropdown -->
+                            <field name="user_answer"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button string="Submit" type="object" name="submit_test" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

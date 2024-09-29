@@ -37,13 +37,17 @@
                     <group>
                         <field name="question_ids">
                             <tree editable="bottom">
-                                <field name="question_id"/>
+                                <field name="question_id" />
                                 <field name="content"/>
-                                <field name="user_answer"/>
+                                <field name="user_answer" readonly="1" />
                                 <field name="order"/>
                             </tree>
                         </field>
                     </group>
+                    <footer>
+                           <button string="Do the Test" type="action" name="%(action_do_test)d" class="btn-primary"
+                                attrs="{'invisible': [('id', '=', False)]}"/>
+                    </footer>
                 </sheet>
             </form>
         </field>
@@ -54,5 +58,13 @@
         <field name="res_model">thes.test</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_test_tree"/>
+    </record>
+
+    <record id="action_do_test" model="ir.actions.act_window">
+        <field name="name">Do Test</field>
+        <field name="res_model">thes.test_wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_test_id': active_id}</field>
     </record>
 </odoo>
