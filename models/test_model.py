@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 import random
 from ..external.langchain_utils import generate_questions  # Import the external functions
+from datetime import datetime
 
 class Test(models.Model):
     _name = 'thes.test'
@@ -17,6 +18,20 @@ class Test(models.Model):
     expired_at = fields.Datetime(string='Expired At')
 
     question_ids = fields.One2many('thes.question_test', 'test_id', string='Questions')
+
+    can_do_test = fields.Boolean(string="Can Do Test", compute="_compute_can_do_test")
+
+    @api.depends('available_at', 'expired_at', 'attempted_at')
+    def _compute_can_do_test(self):
+        current_time = datetime.now()
+        for test in self:
+            # Logic to check if the test can be taken
+            if not test.id:
+                test.can_do_test = False
+            elif not test.attempted_at and test.available_at <= current_time <= test.expired_at:
+                test.can_do_test = True
+            else:
+                test.can_do_test = False
 
     @api.model
     def create(self, vals):

@@ -35,16 +35,17 @@
                     <group>
                         <field name="question_ids">
                             <tree editable="bottom">
-                                <field name="question_id" />
+                                <field name="question_id"/>
                                 <field name="content"/>
-                                <field name="user_answer" readonly="1" />
+                                <field name="user_answer" readonly="1"/>
                                 <field name="order"/>
                             </tree>
                         </field>
                     </group>
                     <footer>
-                           <button string="Do the Test" type="action" name="%(action_do_test)d" class="btn-primary"
-                                attrs="{'invisible': [('id', '=', False)]}"/>
+                        <field name="can_do_test" invisible="1"/>
+                        <button string="Do the Test" type="action" name="%(action_do_test)d" class="btn-primary"
+                                attrs="{'invisible': [('can_do_test', '=', False)]}"/>
                     </footer>
                 </sheet>
             </form>
