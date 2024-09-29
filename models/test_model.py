@@ -13,7 +13,6 @@ class Test(models.Model):
     user_id = fields.Many2one('res.users', string='User')
     feedback = fields.Text(string='Feedback')
     attempted_at = fields.Datetime(string='Attempted At')
-    finished_at = fields.Datetime(string='Finished At')
     available_at = fields.Datetime(string='Available At')
     expired_at = fields.Datetime(string='Expired At')
 

@@ -8,7 +8,6 @@
                 <field name="description"/>
                 <field name="score"/>
                 <field name="attempted_at"/>
-                <field name="finished_at"/>
                 <field name="available_at"/>
                 <field name="expired_at"/>
             </tree>
