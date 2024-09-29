@@ -21,6 +21,13 @@ class Test(models.Model):
     can_do_test = fields.Boolean(string="Can Do Test", compute="_compute_can_do_test")
     show_questions = fields.Boolean(string='Show Questions', compute='_compute_show_questions')
 
+    @api.model
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        user = self.env.user
+        if not user.has_group('base.group_system'):
+            args += [('user_id', '=', user.id)]
+        return super(Test, self).search(args, offset=offset, limit=limit, order=order, count=count)
+
     def _compute_show_questions(self):
         for record in self:
             admin_group = self.env.ref('base.group_system')

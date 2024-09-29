@@ -32,10 +32,13 @@
                     <group>
                         <field name="title"/>
                         <field name="description"/>
+                        <field name="score"/>
+                        <field name="feedback"/>
                     </group>
                     <group>
                         <field name="available_at"/>
                         <field name="expired_at"/>
+                        <field name="attempted_at"/>
                     </group>
                     <group>
                         <field name="user_id"/>
