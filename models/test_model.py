@@ -26,12 +26,14 @@ class Test(models.Model):
             admin_group = self.env.ref('base.group_system')
             record.show_questions = self.env.user in admin_group.users
 
-    @api.depends('available_at', 'expired_at', 'attempted_at')
+    @api.depends('available_at', 'expired_at', 'attempted_at', 'user_id')
     def _compute_can_do_test(self):
         current_time = datetime.now()
         for test in self:
             # Logic to check if the test can be taken
             if not test.id:
+                test.can_do_test = False
+            elif test.user_id.id != self.env.user.id:
                 test.can_do_test = False
             elif not test.attempted_at and test.available_at <= current_time <= test.expired_at:
                 test.can_do_test = True
