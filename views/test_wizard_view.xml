@@ -11,7 +11,7 @@
                             <field name="is_multiple_choice" invisible="1"/>
                             <field name="content" string="Question" readonly="1"/>
                             <!-- Show user_answer only for multiple-choice questions -->
-                            <field name="user_answer" string=" " attrs="{'invisible': [('is_multiple_choice', '=', False)]}" width="60px"/>
+                            <field name="user_answer" string=" " attrs="{'invisible': [('is_multiple_choice', '=', False)]}" width="75px"/>
                             <!-- Show user_answer_text only for fill-in-the-blank questions -->
                             <field name="user_answer_text" string=" " attrs="{'invisible': [('is_multiple_choice', '=', True)]}" width="200px"/>
                         </tree>

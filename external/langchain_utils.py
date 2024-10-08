@@ -90,10 +90,10 @@ def parse_question_response(response, is_multiple_choice):
             'is_multiple_choice': False
         }
 
-def generate_questions():
+def generate_questions(question_num):
     rag_chain = get_rag()
     questions = []
-    for i in range(3):
+    for i in range(question_num):
         prompt_data = create_structured_prompt()
         question_response = rag_chain.invoke(prompt_data['prompt'])
         question = parse_question_response(question_response, prompt_data['is_multiple_choice'])

@@ -34,14 +34,15 @@
                 <sheet>
                     <group>
                         <field name="title"/>
-                        <field name="description"/>
-                        <field name="score"/>
-                        <field name="feedback"/>
+                        <field name="description" attrs="{'invisible': [('id', '=', False)]}"/>
+                        <field name="score" attrs="{'invisible': [('id', '=', False)]}"/>
+                        <field name="feedback" attrs="{'invisible': [('id', '=', False)]}"/>
                     </group>
                     <group>
-                        <field name="available_at"/>
-                        <field name="expired_at"/>
-                        <field name="attempted_at"/>
+                        <field name="available_at" attrs="{'invisible': [('id', '=', False)]}"/>
+                        <field name="expired_at" attrs="{'invisible': [('id', '=', False)]}"/>
+                        <field name="attempted_at" attrs="{'invisible': [('id', '=', False)]}"/>
+                        <field name="question_num" attrs="{'invisible': [('id', '!=', False)]}"/>
                     </group>
                     <group>
                         <field name="user_id"/>
@@ -56,8 +57,8 @@
                                 <field name="is_multiple_choice" invisible="1"/>
                                 <field name="question_id"/>
                                 <field name="content" width="300px" style="white-space: normal;"/>
-                                <field name="user_answer" string=" " attrs="{'invisible': [('is_multiple_choice', '=', False)]}" width="60px"/>
-                            <field name="user_answer_text" string=" " attrs="{'invisible': [('is_multiple_choice', '=', True)]}" width="200px" style="white-space: normal;"/>
+                                <field name="user_answer" string=" " attrs="{'invisible': [('is_multiple_choice', '=', False)]}" width="75px"/>
+                                <field name="user_answer_text" string=" " attrs="{'invisible': [('is_multiple_choice', '=', True)]}" width="200px" style="white-space: normal;"/>
                             </tree>
                         </field>
                     </group>

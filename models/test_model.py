@@ -1,7 +1,7 @@
 from odoo import models, fields, api
 import random
 from ..external.langchain_utils import generate_questions  # Import the external functions
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class Test(models.Model):
     _name = 'thes.test'
@@ -13,13 +13,14 @@ class Test(models.Model):
     user_id = fields.Many2one('res.users', string='User')
     feedback = fields.Text(string='Feedback')
     attempted_at = fields.Datetime(string='Attempted At')
-    available_at = fields.Datetime(string='Available At')
-    expired_at = fields.Datetime(string='Expired At')
+    available_at = fields.Datetime(string='Available At', default=datetime.today())
+    expired_at = fields.Datetime(string='Expired At', default=lambda self: datetime.today() + timedelta(days=1))
 
     question_ids = fields.One2many('thes.question_test', 'test_id', string='Questions')
 
     can_do_test = fields.Boolean(string="Can Do Test", compute="_compute_can_do_test")
     show_questions = fields.Boolean(string='Show Questions', compute='_compute_show_questions')
+    question_num = fields.Integer(string='Number of Questions')
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
@@ -38,7 +39,7 @@ class Test(models.Model):
         current_time = datetime.now()
         for test in self:
             # Logic to check if the test can be taken
-            if not test.id:
+            if not test.id or not test.available_at or not test.expired_at:
                 test.can_do_test = False
             elif test.user_id.id != self.env.user.id:
                 test.can_do_test = False
@@ -53,7 +54,7 @@ class Test(models.Model):
         test = super(Test, self).create(vals)
 
         # Generate questions using the LangChain utility
-        questions = generate_questions()
+        questions = generate_questions(vals['question_num'])
 
         # Create and link questions to the test
         for question_data in questions:
