@@ -6,20 +6,26 @@
             <form string="Do Test">
                 <group>
                     <field name="test_id" invisible="1"/>
-                    <field name="question_test_ids">
-
-                        <tree editable="bottom" create="false" delete="false">
-                            <field name="question_id" invisible="1"/>
-                            <!-- Display question content in a multi-line textarea with word wrap -->
-                            <field name="content" widget="text" style="white-space: normal;"/>
-                            <field name="answer_a" widget="text" style="white-space: normal;"/>
-                            <field name="answer_b" widget="text" style="white-space: normal;"/>
-                            <field name="answer_c" widget="text" style="white-space: normal;"/>
-                            <field name="answer_d" widget="text" style="white-space: normal;"/>
-
-                            <!-- Display user answer as a dropdown -->
-                            <field name="user_answer"/>
+                    <field name="question_test_ids" string="Question" mode="tree,form" options="{'no_create': True, 'no_delete': True, 'no_quick_create': True}">
+                        <tree string="Questions" create="false" delete="false">
+                            <field name="content" string="Question" readonly="1"/>
+                            <field name="user_answer" string="Selected Answer"/>
                         </tree>
+                        <form string="Open: Questions" name="content" create="false" edit="false" options="{'no_open':True,'no_create': True}">
+                            <field name="question_id" invisible="1"/>
+                            <sheet>
+                                <group>
+                                    <field name="content" readonly="1" widget="text"/>
+                                </group>
+                                <group>
+                                    <field name="answer_a" readonly="1" widget="text"/>
+                                    <field name="answer_b" readonly="1" widget="text"/>
+                                    <field name="answer_c" readonly="1" widget="text"/>
+                                    <field name="answer_d" readonly="1" widget="text"/>
+                                    <field name="user_answer"/>
+                                </group>
+                            </sheet>
+                        </form>
                     </field>
                 </group>
                 <footer>
@@ -29,5 +35,4 @@
             </form>
         </field>
     </record>
-
 </odoo>
