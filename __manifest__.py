@@ -3,15 +3,14 @@
     'name': "Safety Suite",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
-
+        Optimizing Labor Protection through a Tailored L&D ERP Module on Odoo""",
     'description': """
-        Long description of module's purpose
+        The labor protection industry demands rigorous training and continuous skill enhancement to ensure safety and compliance with regulations. Traditional training methods often fall short in providing efficient management and assessment of employee training. This thesis addresses these challenges by developing an ERP module within Odoo that streamlines the entire process, from onboarding to training completion.
     """,
+    'icon': '/safety-suite/static/description/icon.png',
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Bui Huu Loc",
+    'website': "https://github.com/maoleng",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
