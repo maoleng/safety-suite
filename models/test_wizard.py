@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from ..external.langchain_utils import are_sentences_similar_llm  # Import the external functions
 
 class TestWizard(models.TransientModel):
     _name = 'thes.test_wizard'
@@ -33,16 +34,27 @@ class TestWizard(models.TransientModel):
         for wizard_question in self.question_test_ids:
             question = wizard_question.question_id
             user_answer = wizard_question.user_answer
-            # Check if the user's answer matches the true answer
-            if user_answer == question.true_answer:
-                correct_answers += 1
+
+            if question.is_multiple_choice:
+                # Check if the user's answer matches the true answer for multiple-choice
+                if user_answer == question.true_answer:
+                    correct_answers += 1
+            else:
+                # Compare user's answer with the true_answer_text for fill-in-the-blank
+                user_answer_text = wizard_question.user_answer_text
+                if are_sentences_similar_llm(user_answer_text, question.true_answer_text):
+                    correct_answers += 1
 
             # Update the user's answer in the corresponding question_test record
             test_question = self.env['thes.question_test'].search([
                 ('test_id', '=', test.id),
                 ('question_id', '=', question.id)
             ])
-            test_question.user_answer = user_answer
+
+            if question.is_multiple_choice:
+                test_question.user_answer = user_answer
+            else:
+                test_question.user_answer_text = user_answer_text
 
         # Calculate score as a percentage
         score = (correct_answers / total_questions) * 100

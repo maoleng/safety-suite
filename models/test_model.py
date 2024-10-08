@@ -57,14 +57,22 @@ class Test(models.Model):
 
         # Create and link questions to the test
         for question_data in questions:
-            question = self.env['thes.question'].create({
-                'content': question_data['content'],
-                'answer_a': question_data['answer_a'],
-                'answer_b': question_data['answer_b'],
-                'answer_c': question_data['answer_c'],
-                'answer_d': question_data['answer_d'],
-                'true_answer': question_data['true_answer'],
-            })
+            if question_data['is_multiple_choice']:
+                question = self.env['thes.question'].create({
+                    'content': question_data['content'],
+                    'answer_a': question_data['answer_a'],
+                    'answer_b': question_data['answer_b'],
+                    'answer_c': question_data['answer_c'],
+                    'answer_d': question_data['answer_d'],
+                    'true_answer': question_data['true_answer'],
+                    'is_multiple_choice': True
+                })
+            else:
+                question = self.env['thes.question'].create({
+                    'content': question_data['content'],
+                    'true_answer_text': question_data['true_answer_text'],
+                    'is_multiple_choice': False
+                })
 
             # Link the question to the test
             self.env['thes.question_test'].create({

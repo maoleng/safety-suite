@@ -15,6 +15,9 @@ class QuestionTestWizard(models.TransientModel):
     answer_c = fields.Char(string='Answer C', related='question_id.answer_c', readonly=True)
     answer_d = fields.Char(string='Answer D', related='question_id.answer_d', readonly=True)
 
+    is_multiple_choice = fields.Boolean(string='Is Multiple Choice', related='question_id.is_multiple_choice', readonly=True)
+
+
     # User's selected answer
     user_answer = fields.Selection([
         ('A', 'Answer A'),
@@ -22,3 +25,5 @@ class QuestionTestWizard(models.TransientModel):
         ('C', 'Answer C'),
         ('D', 'Answer D')
     ], string='Your Answer')
+
+    user_answer_text = fields.Text(string='Your Answer (Fill in the Blank)')

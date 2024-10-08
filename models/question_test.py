@@ -12,5 +12,7 @@ class QuestionTest(models.Model):
         ('C', 'Answer C'),
         ('D', 'Answer D')
     ], string='User Answer')
+    user_answer_text = fields.Char(string='User Answer (Text)', help="User's answer for fill-in-the-blank questions.")
 
     content = fields.Text(related='question_id.content', string='Question Content')
+    is_multiple_choice = fields.Boolean(string='Is Multiple Choice', related='question_id.is_multiple_choice')

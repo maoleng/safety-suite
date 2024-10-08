@@ -1,4 +1,5 @@
 <odoo>
+    <!-- Tree view for 'Test' model -->
     <record id="view_test_tree" model="ir.ui.view">
         <field name="name">test.tree</field>
         <field name="model">thes.test</field>
@@ -14,15 +15,17 @@
         </field>
     </record>
 
-
+    <!-- Action for opening the test wizard -->
     <record id="action_do_test" model="ir.actions.act_window">
         <field name="name">Do Test</field>
         <field name="res_model">thes.test_wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
+        <!-- Use 'active_id' from the current context to pass the selected test id -->
         <field name="context">{'default_test_id': active_id}</field>
     </record>
 
+    <!-- Form view for 'Test' model -->
     <record id="view_test_form" model="ir.ui.view">
         <field name="name">test.form</field>
         <field name="model">thes.test</field>
@@ -44,18 +47,26 @@
                         <field name="user_id"/>
                     </group>
 
+                    <!-- Hidden field to check if questions should be shown -->
                     <field name="show_questions" invisible="1"/>
+                    <!-- Display questions only if 'show_questions' is True -->
                     <group attrs="{'invisible': [('show_questions', '=', False)]}">
                         <field name="question_ids">
                             <tree editable="bottom">
+                                <field name="is_multiple_choice" invisible="1"/>
                                 <field name="question_id"/>
-                                <field name="content"/>
-                                <field name="user_answer" readonly="1"/>
+                                <field name="content" width="300px" style="white-space: normal;"/>
+                                <field name="user_answer" string=" " attrs="{'invisible': [('is_multiple_choice', '=', False)]}" width="60px"/>
+                            <field name="user_answer_text" string=" " attrs="{'invisible': [('is_multiple_choice', '=', True)]}" width="200px" style="white-space: normal;"/>
                             </tree>
                         </field>
                     </group>
+
+                    <!-- Footer with 'Do the Test' button -->
                     <footer>
+                        <!-- Hidden field to check if the test can be done -->
                         <field name="can_do_test" invisible="1"/>
+                        <!-- 'Do the Test' button only appears if 'can_do_test' is True -->
                         <button string="Do the Test" type="action" name="%(action_do_test)d" class="btn-primary"
                                 attrs="{'invisible': [('can_do_test', '=', False)]}"/>
                     </footer>
@@ -64,11 +75,11 @@
         </field>
     </record>
 
+    <!-- Action for 'Test Management' to display the tree and form views -->
     <record id="action_test_management" model="ir.actions.act_window">
         <field name="name">Test Management</field>
         <field name="res_model">thes.test</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_test_tree"/>
     </record>
-
 </odoo>
