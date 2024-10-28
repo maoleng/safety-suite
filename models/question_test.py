@@ -5,7 +5,7 @@ class QuestionTest(models.Model):
     _description = 'Question Test'
 
     question_id = fields.Many2one('thes.question', string='Question', required=True)
-    test_id = fields.Many2one('thes.test', string='Test', required=True)
+    test_id = fields.Many2one('thes.test', string='Test', required=True, ondelete='cascade')
     user_answer = fields.Selection([
         ('A', 'Answer A'),
         ('B', 'Answer B'),

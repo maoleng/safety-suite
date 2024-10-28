@@ -11,27 +11,39 @@ from langchain_openai import ChatOpenAI
 import os
 
 def get_rag():
-    os.environ["OPENAI_API_KEY"] = "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"
+    os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
     llm = ChatOpenAI(model="gpt-4o-mini")
-
-    # LangChain initialization logic here
+    # Specify the persistence directory for the Chroma vectorstore
     module_path = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(module_path, 'data.txt')
+    vectorstore_path = os.path.join(module_path, 'vectorstore')
 
-    loader = TextLoader(file_path)
-    docs = loader.load()
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-    splits = text_splitter.split_documents(docs)
-    vectorstore = Chroma.from_documents(documents=splits, embedding=OpenAIEmbeddings())
+    # Load or create the vectorstore
+    if os.path.exists(vectorstore_path):
+        # Load existing vectorstore
+        vectorstore = Chroma(persist_directory=vectorstore_path, embedding_function=OpenAIEmbeddings())
+    else:
+        # Load document and split it into chunks
+        file_path = os.path.join(module_path, 'data.txt')
+        loader = TextLoader(file_path)
+        docs = loader.load()
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+        splits = text_splitter.split_documents(docs)
+
+        # Create the vectorstore and specify the persistence directory
+        vectorstore = Chroma.from_documents(documents=splits, embedding=OpenAIEmbeddings(), persist_directory=vectorstore_path)
+
+    # Set up retriever and prompt
     retriever = vectorstore.as_retriever()
     prompt = hub.pull("rlm/rag-prompt")
 
+    # Return the retrieval-augmented generation chain
     return (
-        {"context": retriever | (lambda docs: "\n\n".join(doc.page_content for doc in docs)), "question": RunnablePassthrough()}
-        | prompt
-        | llm
-        | StrOutputParser()
+            {"context": retriever | (lambda docs: "\n\n".join(doc.page_content for doc in docs)),
+             "question": RunnablePassthrough()}
+            | prompt
+            | llm
+            | StrOutputParser()
     )
 
 # Functions to generate and parse questions
