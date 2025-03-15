@@ -1,0 +1,9 @@
+<odoo>
+    <menuitem id="menu_incident_management_root" name="Incident Management" sequence="20"/>
+
+    <menuitem id="menu_incident_management"
+              name="Incidents"
+              parent="menu_incident_management_root"
+              action="action_incident_management"
+              sequence="10"/>
+</odoo>

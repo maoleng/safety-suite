@@ -1,0 +1,50 @@
+<odoo>
+    <!-- Tree view for listing incident reports -->
+    <record id="view_incident_tree" model="ir.ui.view">
+        <field name="name">incident.tree</field>
+        <field name="model">thes.incident</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="description"/>
+                <field name="type_id"/>
+                <field name="location"/>
+                <field name="severity"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view for creating and editing incident reports -->
+    <record id="view_incident_form" model="ir.ui.view">
+        <field name="name">incident.form</field>
+        <field name="model">thes.incident</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <!-- Always show the description field -->
+                        <field name="description" />
+
+                        <!-- Display these fields only in edit mode (record exists) -->
+                        <field name="type_id" attrs="{'invisible': [('id', '=', False)]}" />
+                        <field name="location" attrs="{'invisible': [('id', '=', False)]}" />
+                        <field name="severity" attrs="{'invisible': [('id', '=', False)]}" />
+                        <field name="corrective_action" attrs="{'invisible': [('id', '=', False)]}" />
+                        <field name="assigned_users" attrs="{'invisible': [('id', '=', False)]}" >
+                            <tree editable="bottom">
+                                <field name="user_id"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to manage incident reports -->
+    <record id="action_incident_management" model="ir.actions.act_window">
+        <field name="name">Incident Management</field>
+        <field name="res_model">thes.incident</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_incident_tree"/>
+    </record>
+</odoo>

@@ -1,9 +1,0 @@
-<odoo>
-    <menuitem id="menu_course_management_root" name="Course Management" sequence="20"/>
-
-    <menuitem id="menu_course_management"
-              name="Courses"
-              parent="menu_course_management_root"
-              action="action_course_management"
-              sequence="10"/>
-</odoo>

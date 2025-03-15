@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_incident_user_manager,access_incident_user_manager,model_thes_incident_user,,1,1,1,1
+access_incident_manager,access_incident_manager,model_thes_incident,,1,1,1,1
+access_type_manager,access_type_manager,model_thes_type,,1,1,1,1
